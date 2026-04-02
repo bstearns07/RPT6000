@@ -55,13 +55,13 @@
            05 OLD-SALESREP-NUMBER      PIC 99.
            05 OLD-BRANCH-NUMBER        PIC 99.
 
-       01  PRINT-FIELDS.
+       01  PRINT-FIELDS                    PACKED-DECIMAL.
            05  PAGE-COUNT      PIC S9(3)   VALUE ZERO.
            05  LINES-ON-PAGE   PIC S9(3)   VALUE +55.
            05  LINE-COUNT      PIC S9(3)   VALUE +99.
            05  SPACE-CONTROL   PIC S9.
 
-       01  TOTAL-FIELDS.
+       01  TOTAL-FIELDS                              PACKED-DECIMAL.
            05  SALESREP-TOTAL-THIS-YTD   PIC S9(6)V99   VALUE ZERO.
            05  SALESREP-TOTAL-LAST-YTD   PIC S9(6)V99   VALUE ZERO.
            05  BRANCH-TOTAL-THIS-YTD  PIC S9(6)V99   VALUE ZERO.
@@ -71,9 +71,12 @@
            05  GRAND-TOTAL-CHANGE-AMT PIC S9(7)V99   VALUE ZERO.
            05  GRAND-TOTAL-CHANGE-PCT PIC S9(3)V9    VALUE ZERO.
 
-       01  CALCULATION-FIELDS.
+       01  CALCULATION-FIELDS         PACKED-DECIMAL.
            05  WS-CHANGE-AMOUNT       PIC S9(7)V99   VALUE ZERO.
            05  WS-CHANGE-PERCENT      PIC S9(3)V9    VALUE ZERO.
+           05  WS-CHANGE-PERCENT-R    REDEFINES WS-CHANGE-PERCENT 
+                                      PIC X(6).
+           
 
        01  CURRENT-DATE-AND-TIME.
            05  CD-YEAR         PIC 9999.
@@ -294,10 +297,12 @@
            MOVE WS-CHANGE-AMOUNT TO CL-CHANGE-AMOUNT.
 
            IF CM-SALES-LAST-YTD = ZERO
-               MOVE 999.9 TO WS-CHANGE-PERCENT
+               MOVE "  N/A " TO WS-CHANGE-PERCENT-R
            ELSE
                COMPUTE WS-CHANGE-PERCENT =
                    (WS-CHANGE-AMOUNT / CM-SALES-LAST-YTD) * 100
+                     ON SIZE ERROR
+                          MOVE "OVRFLW" TO WS-CHANGE-PERCENT-R
            END-IF.
            MOVE WS-CHANGE-PERCENT TO CL-CHANGE-PERCENT.
 
@@ -340,12 +345,12 @@
                     SALESREP-TOTAL-THIS-YTD - SALESREP-TOTAL-LAST-YTD.
            MOVE WS-CHANGE-AMOUNT TO STL-CHANGE-AMOUNT.
            IF SALESREP-TOTAL-LAST-YTD = ZERO
-                MOVE 999.9 TO STL-CHANGE-PERCENT
+                MOVE "  N/A " TO STL-CHANGE-PERCENT-R
            ELSE
               COMPUTE STL-CHANGE-PERCENT ROUNDED =
                  WS-CHANGE-AMOUNT * 100 / SALESREP-TOTAL-LAST-YTD
                   ON SIZE ERROR
-                      MOVE 999.9 TO STL-CHANGE-PERCENT.
+                      MOVE "OVRFLW" TO STL-CHANGE-PERCENT-R.
            MOVE SALESREP-TOTAL-LINE  TO PRINT-AREA.
            MOVE 1 TO SPACE-CONTROL.
            PERFORM 350-WRITE-REPORT-LINE.
@@ -363,12 +368,12 @@
                     BRANCH-TOTAL-THIS-YTD - BRANCH-TOTAL-LAST-YTD.
            MOVE WS-CHANGE-AMOUNT TO BTL-CHANGE-AMOUNT.
            IF BRANCH-TOTAL-LAST-YTD = ZERO
-                MOVE 999.9 TO BTL-CHANGE-PERCENT
+                MOVE "  N/A " TO BTL-CHANGE-PERCENT-R
            ELSE
               COMPUTE BTL-CHANGE-PERCENT ROUNDED =
                  WS-CHANGE-AMOUNT * 100 / BRANCH-TOTAL-LAST-YTD
                   ON SIZE ERROR
-                      MOVE 999.9 TO BTL-CHANGE-PERCENT.
+                      MOVE "OVRFLW"TO BTL-CHANGE-PERCENT-R.
            MOVE BRANCH-TOTAL-LINE  TO PRINT-AREA.
            MOVE 1 TO SPACE-CONTROL.
            PERFORM 350-WRITE-REPORT-LINE.
