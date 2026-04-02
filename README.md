@@ -1,4 +1,4 @@
-# RPT 5000
+# RPT 6000
 ![License](https://img.shields.io/badge/License-MIT-green)<br>
 
 ---
@@ -104,7 +104,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 ## 🖼 Screenshots
 
 ### 🖼 Final Report
-![rpt-5000](assets/report.png)
+![rpt-6000](assets/report.png)
 
 
 ⬆️ [Back to Top](#-smartwatch-faq)
