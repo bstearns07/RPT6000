@@ -4,7 +4,7 @@
       *****************************************************************
       *  Programmers: Tristan Joubert and 
       *  Date.......: 2 April 2026
-      *  GitHub URL.: 
+      *  GitHub URL.: https://github.com/bstearns07/RPT6000
       *  Description: The RPT6000 program is an enhanced COBOL
       *               reporting tool. It serves as a data processing
       *               utility that reads customer financial records
@@ -157,31 +157,36 @@
            05  FILLER              PIC X(4)    VALUE SPACE.
            05  CL-CHANGE-AMOUNT    PIC ZZ,ZZ9.99-.
            05  FILLER              PIC X(4)    VALUE SPACE.
-           05  CL-CHANGE-PERCENT   PIC ZZ9.9-.
+           05  CL-CHANGE-PERCENT   PIC ---9.9.
+           05  CL-CHANGE-PERCENT-R REDEFINES CL-CHANGE-PERCENT PIC x(6).
            05  FILLER              PIC X(48)   VALUE SPACE.
 
        01  SALESREP-TOTAL-LINE.
            05  FILLER              PIC X(23)   VALUE SPACE.
            05  FILLER              PIC X(20)   VALUE "SALESREP TOTAL".
-           05  STL-SALES-THIS-YTD  PIC ZZZ,ZZ9.99-.
+           05  STL-SALES-THIS-YTD  PIC $$$,$$$.99-.
            05  FILLER              PIC X(3)    VALUE SPACE.
-           05  STL-SALES-LAST-YTD  PIC ZZZ,ZZ9.99-.
+           05  STL-SALES-LAST-YTD  PIC $$$,$$$.99-.
            05  FILLER              PIC X(3)    VALUE SPACE.
-           05  STL-CHANGE-AMOUNT   PIC ZZZ,ZZ9.99-.
+           05  STL-CHANGE-AMOUNT   PIC $$$,$$$.99-.
            05  FILLER              PIC X(4)    VALUE SPACE.
-           05  STL-CHANGE-PERCENT  PIC ZZ9.9-.
+           05  STL-CHANGE-PERCENT  PIC +++9.9.
+           05  STL-CHANGE-PERCENT-R REDEFINES 
+                       STL-CHANGE-PERCENT PIC X(6).
            05  FILLER              PIC X(40)   VALUE "  *".
 
        01  BRANCH-TOTAL-LINE.
            05  FILLER              PIC X(23)   VALUE SPACE.
            05  FILLER              PIC X(20)   VALUE "BRANCH TOTAL".
-           05  BTL-SALES-THIS-YTD  PIC ZZZ,ZZ9.99-.
+           05  BTL-SALES-THIS-YTD  PIC $$$,$$$.99-.
            05  FILLER              PIC X(3)    VALUE SPACE.
-           05  BTL-SALES-LAST-YTD  PIC ZZZ,ZZ9.99-.
+           05  BTL-SALES-LAST-YTD  PIC $$$,$$$.99-.
            05  FILLER              PIC X(3)    VALUE SPACE.
-           05  BTL-CHANGE-AMOUNT   PIC ZZZ,ZZ9.99-.
+           05  BTL-CHANGE-AMOUNT   PIC $$$,$$$.99-.
            05  FILLER              PIC X(4)    VALUE SPACE.
-           05  BTL-CHANGE-PERCENT  PIC ZZ9.9-.
+           05  BTL-CHANGE-PERCENT  PIC +++9.9.
+           05  BTL-CHANGE-PERCENT-R REDEFINES 
+                       BTL-CHANGE-PERCENT PIC X(6).
            05  FILLER              PIC X(40)   VALUE " **".
 
        01  BLANK-LINE.
