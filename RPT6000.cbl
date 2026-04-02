@@ -2,7 +2,7 @@
 
        PROGRAM-ID. RPT6000.
       *****************************************************************
-      *  Programmers: Tristan Joubert and 
+      *  Programmers: Tristan Joubert and
       *  Date.......: 2 April 2026
       *  GitHub URL.: https://github.com/bstearns07/RPT6000
       *  Description: The RPT6000 program is an enhanced COBOL
@@ -45,6 +45,14 @@
        01  PRINT-AREA      PIC X(130).
 
        WORKING-STORAGE SECTION.
+
+       01  SALESREP-TABLE VALUE "10DJOHNSON  11JSMTIH    12TTHOMS    14B
+      -     "JONES    17GFRANKLIN".
+           05  SALESREP-GROUP OCCURS 6 TIMES
+                                INDEXED BY SRT-INDEX.
+               10  SALESREP-NUMBER  PIC 9(2).
+               10  SALESREP-NAME    PIC X(10).
+
        01  SWITCHES.
            05  CUSTMAST-EOF-SWITCH     PIC X    VALUE "N".
                88 CUSTMAST-EOF                  VALUE "Y".
@@ -74,9 +82,8 @@
        01  CALCULATION-FIELDS         PACKED-DECIMAL.
            05  WS-CHANGE-AMOUNT       PIC S9(7)V99   VALUE ZERO.
            05  WS-CHANGE-PERCENT      PIC S9(3)V9    VALUE ZERO.
-           05  WS-CHANGE-PERCENT-R    REDEFINES WS-CHANGE-PERCENT 
+           05  WS-CHANGE-PERCENT-R    REDEFINES WS-CHANGE-PERCENT
                                       PIC X(6).
-           
 
        01  CURRENT-DATE-AND-TIME.
            05  CD-YEAR         PIC 9999.
@@ -150,6 +157,8 @@
            05  FILLER              PIC X(4)    VALUE SPACE.
            05  CL-SALESREP-NUMBER  PIC X(2).
            05  FILLER              PIC X(3)    VALUE SPACE.
+           05  CL-SALEREP-NAME     PIC X(10).
+           05 FILLER               PIC X(2)    VALUE SPACE.
            05  CL-CUSTOMER-NUMBER  PIC 9(5).
            05  FILLER              PIC X(2)    VALUE SPACE.
            05  CL-CUSTOMER-NAME    PIC X(20).
@@ -174,7 +183,7 @@
            05  STL-CHANGE-AMOUNT   PIC $$$,$$$.99-.
            05  FILLER              PIC X(4)    VALUE SPACE.
            05  STL-CHANGE-PERCENT  PIC +++9.9.
-           05  STL-CHANGE-PERCENT-R REDEFINES 
+           05  STL-CHANGE-PERCENT-R REDEFINES
                        STL-CHANGE-PERCENT PIC X(6).
            05  FILLER              PIC X(40)   VALUE "  *".
 
@@ -188,7 +197,7 @@
            05  BTL-CHANGE-AMOUNT   PIC $$$,$$$.99-.
            05  FILLER              PIC X(4)    VALUE SPACE.
            05  BTL-CHANGE-PERCENT  PIC +++9.9.
-           05  BTL-CHANGE-PERCENT-R REDEFINES 
+           05  BTL-CHANGE-PERCENT-R REDEFINES
                        BTL-CHANGE-PERCENT PIC X(6).
            05  FILLER              PIC X(40)   VALUE " **".
 
@@ -276,16 +285,20 @@
            IF FIRST-RECORD
               MOVE CM-BRANCH-NUMBER TO CL-BRANCH-NUMBER
               MOVE CM-SALESREP-NUMBER TO CL-SALESREP-NUMBER
+              PERFORM 325-MOVE-SALESREP-NAME
            ELSE
               IF CM-BRANCH-NUMBER > OLD-BRANCH-NUMBER
                  MOVE CM-BRANCH-NUMBER TO CL-BRANCH-NUMBER
                  MOVE CM-SALESREP-NUMBER TO CL-SALESREP-NUMBER
+                 PERFORM 325-MOVE-SALESREP-NAME
               ELSE
                  MOVE SPACE TO CL-BRANCH-NUMBER
                  IF CM-SALESREP-NUMBER > OLD-SALESREP-NUMBER
                     MOVE CM-SALESREP-NUMBER TO CL-SALESREP-NUMBER
+                    PERFORM 325-MOVE-SALESREP-NAME
                  ELSE
-                    MOVE SPACE TO CL-SALESREP-NUMBER.
+                    MOVE SPACE TO CL-SALESREP-NUMBER
+                    MOVE SPACE TO CL-SALEREP-NAME.
 
            MOVE CM-CUSTOMER-NUMBER TO CL-CUSTOMER-NUMBER.
            MOVE CM-CUSTOMER-NAME   TO CL-CUSTOMER-NAME.
@@ -316,6 +329,15 @@
            ADD WS-CHANGE-AMOUNT  TO GRAND-TOTAL-CHANGE-AMT.
 
            MOVE 1 TO SPACE-CONTROL.
+
+       325-MOVE-SALESREP-NAME.
+           SET SRT-INDEX TO 1.
+           SEARCH SALESREP-GROUP 
+                AT END
+                    MOVE "UNKNOWN" TO SALESREP-NAME
+                  WHEN SALESREP-NUMBER (SRT-INDEX) = CM-SALESREP-NUMBER
+                    MOVE SALESREP-NAME (SRT-INDEX) TO SALESREP-NAME
+           END-SEARCH.
 
        330-PRINT-HEADING-LINES.
            ADD 1 TO PAGE-COUNT.
