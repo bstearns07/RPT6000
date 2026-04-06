@@ -1,11 +1,10 @@
       *****************************************************************
-      * Title..........: RPT6000 - Future Value Calculator
-      * Programmer.....: Ben Stearns and Tristan Joubert
-      * Date...........: 4-5-26
-      * GitHub URL.....: https://github.com/bstearns07/RPT6000
-      * Program Desc...: Updates RPT5000 with additional COBOL
-      *                  standards and reading a file to create
-      *                  a table array for name lookups
+      * Title..........: RPT5000 - Future Value Calculator
+      * Programmer.....: Ben Stearns and Aidan Dunbar
+      * Date...........: 3-24-26
+      * GitHub URL.....: https://github.com/bstearns07/RPT5000.git
+      * Program Desc...: Updates RPT3000 with sales rep totals and
+      *                  non-repeating sales rep numbers
       * File Desc......: Defines the sole source code for application
       *****************************************************************
        IDENTIFICATION DIVISION.
@@ -120,19 +119,20 @@
            05  HL1-DAY         PIC 9(2).
            05  FILLER          PIC X(1)    VALUE "/".
            05  HL1-YEAR        PIC 9(4).
-           05  FILLER          PIC X(23)   VALUE SPACE.
+           05  FILLER          PIC X(24)   VALUE SPACE.
            05  FILLER          PIC X(20)   VALUE "YEAR-TO-DATE SALES R".
-           05  FILLER          PIC X(20)   VALUE "EPORT               ".
-           05  FILLER          PIC X(8)    VALUE "  PAGE: ".
+           05  FILLER          PIC X(5)   VALUE "EPORT".
+           05  FILLER          PIC X(25)   VALUE SPACE.
+           05  FILLER          PIC X(10)    VALUE "  PAGE: ".
            05  Hl1-PAGE-NUMBER PIC ZZZ9.
-           05  FILLER          PIC X(49)   VALUE SPACE.
+           05  FILLER          PIC X(37)   VALUE SPACE.
 
        01  HEADING-LINE-2.
            05  FILLER          PIC X(7)    VALUE "TIME:  ".
            05  HL2-HOURS       PIC 9(2).
            05  FILLER          PIC X(1)    VALUE ":".
            05  HL2-MINUTES     PIC 9(2).
-           05  FILLER          PIC X(70)   VALUE SPACE.
+           05  FILLER          PIC X(81)   VALUE SPACE.
            05  FILLER          PIC X(10)   VALUE "RPT6000".
            05  FILLER          PIC X(49)   VALUE SPACE.
 
