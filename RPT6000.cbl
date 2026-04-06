@@ -1,10 +1,12 @@
       *****************************************************************
-      * Title..........: RPT5000 - Future Value Calculator
-      * Programmer.....: Ben Stearns and Aidan Dunbar
-      * Date...........: 3-24-26
-      * GitHub URL.....: https://github.com/bstearns07/RPT5000.git
-      * Program Desc...: Updates RPT3000 with sales rep totals and
-      *                  non-repeating sales rep numbers
+      * Title..........: RPT6000 - Future Value Calculator
+      * Programmer.....: Ben Stearns and Tristan Joubert
+      * Date...........: 4-6-26
+      * GitHub URL.....: https://github.com/bstearns07/RPT6000
+      * Program Desc...: Updates RPT5000 with more COBOL features
+      *                  such as INITIALIZE and PACKED-DECIMAL. Also
+      *                  reads in a file as a table for looking up
+      *                  a sales rep's name based on their id number
       * File Desc......: Defines the sole source code for application
       *****************************************************************
        IDENTIFICATION DIVISION.
