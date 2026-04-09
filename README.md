@@ -3,9 +3,9 @@
 
 ---
 
-## 👤 Author
-Ben Stearns - [@bstearns07](https://github.com/bstearns07)
-
+## 👤 Authors
+Ben Stearns - [@bstearns07](https://github.com/bstearns07)<br>
+Tristan Joubert - [@TJouber004](https://github.com/TJoubert004)
 ---
 
 ## 📑 Table of Contents
@@ -22,7 +22,9 @@ Ben Stearns - [@bstearns07](https://github.com/bstearns07)
 
 ## 📌 Summary
 
-The **Report 6000** application...
+The **Report 6000** application adds even more COBOL bells and whistles to make the code and report look more polished than ever before.
+Not only does the code utilize more COBOL features to make the code more readable and flexible such as INITIALIZE, PACKED-DECIMAL, and REDIFINE statements, but now the report displays the salerep's name. How does it do that you make ask? Why, with a table lookup of course. A new data file has been added to the program, which is then read in by the program to find a rep's name by their id.<br>
+<br>
 For full program details, refer to [Program Requirements](./assets/Assignment_Instruction.pdf) 
 
 ---
@@ -32,8 +34,11 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 - Sorted by branch number and sale representive number
 - Customer sales totals by this year-to-date, last-year-to-date, change amount, and chance percent
 - Final totals across all customer for this year-to-date, last-year-to-date, change amount, and chance percent
-- (new) Both branch AND sale representative sale totals
-- (new) More standadized COBOL coding syntax
+- Both branch AND sale representative sale totals
+- More standadized COBOL coding syntax
+- (new) Additional EVALUATE, PACKED-DECIMAL, and REDIFINE statements for more concise/flexible coding
+- (new) Looks up a salerep's name by their id within a Table data structure
+- (new) Copies data from other members
 ---
 
 ## 🧾 Report Breakdown
