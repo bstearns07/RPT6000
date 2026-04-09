@@ -1,0 +1,4 @@
+       01  SALESREP-MASTER-RECORD.
+           10 SM-SALESREP-NUMBER PIC 99.
+           10 SM-SALESREP-NAME   PIC X(10).
+           10 FILLER              PIC X(118).
