@@ -43,7 +43,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 
 ## 🧾 Report Breakdown
 
-![rpt-5000](assets/report.png)
+![rpt-6000](assets/output.png)
 
 ### 📊 Report Fields Overview
 | Field | Description |
@@ -80,6 +80,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 - Report generation with standard alignments
 - Reading data in from another mainframe member
 - Proper setup of Environment and Data divisions for reading in data from other members
+- Utilizing copy members to copy in data from another memeber for easy re-use
 
 ### 🛠 Development Tools
 - Marist z/OS Mainframe environment
@@ -109,7 +110,6 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 ## 🖼 Screenshots
 
 ### 🖼 Final Report
-![rpt-6000](assets/report.png)
 
-
+### 🖼 Unknown Name Validation
 ⬆️ [Back to Top](#-smartwatch-faq)
