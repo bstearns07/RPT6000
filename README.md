@@ -48,10 +48,9 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 ### 📊 Report Fields Overview
 | Field | Description |
 |------|-------------|
-| 🏢 Branch | The branch that handled the sale |
-| 👤 Sales Rep | The representative responsible for the sale |
-| 🆔 Customer Number | Unique ID assigned to the customer |
-| 📛 Customer Name | Name of the customer |
+| 🏢 Branch | The ID number of the branch that handled the sale |
+| 👤 Sales Rep | The representative ID and name responsible for the sale |
+| 🆔 Customer | Unique ID and name of the customer |
 | 💰 Sales This YTD | Total sales for the current year-to-date |
 | 📉 Sales Last YTD | Total sales for the previous year-to-date |
 
@@ -68,7 +67,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 ### ⚠️ Special Case Handling
 | Condition | Behavior |
 |----------|----------|
-| 🚫 Sales Last YTD = 0 | Change Percent is set to `999.99` to avoid division by zero |
+| 🚫 Sales Last YTD = 0 | Change Percent is set to `OVRFLW` |
 ---
 ## 🧰 Tech Stack
 
@@ -89,7 +88,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 ---
 ## How It Works
 
-1. Upload the repository's associated .cbl, .jcl and CUSTMAST data members to your mainframe environment
+1. Upload the repository's associated .cbl, .jcl, CUSTMAST, SALESREP, and SYSLIB data members to your mainframe environment
 2. Modify the JCL username on line 1 and the DSN names to match the filepaths for where the members are in your environment
 3. Sumbit the JCL job for processing
 
