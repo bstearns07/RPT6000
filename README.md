@@ -43,7 +43,7 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 
 ## 🧾 Report Breakdown
 
-![rpt-6000](assets/output.png)
+![rpt-6000](assets/RPT6000output.png)
 
 ### 📊 Report Fields Overview
 | Field | Description |
@@ -97,19 +97,28 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 
 ## 🧠 Topics Covered
 
-
+* **Table Processing & Lookups**: Implemented internal tables using the `OCCURS` clause and optimized data retrieval with the `SEARCH` verb and `INDEXED BY` to dynamically find sales representative names.
+* **Data Internalization (COPY Members)**: Utilized `COPY` statements to pull in external record definitions for `CUSTMAST` and `SALESREP`, promoting modularity and code reusability.
+* **Advanced Data Types**: Implemented `PACKED-DECIMAL` (COMP-3) for `PRINT-FIELDS` , `TOTAL-FIELDS` , and `CALCULATED-FIELDS` to optimize mainframe storage and computational performance.
+* **Memory Redefinition**: Leveraged the `REDEFINES` clause to handle multiple data formats for the same memory area, allowing the program to display alphanumeric strings like "N/A" or "OVRFLW" in numeric report fields.
+* **Control Break Logic**: Managed multi-level reporting by detecting changes in branch and sales rep numbers to trigger nested sub-total and total line printing.
 
 ---
 
 ## 📘 What I Learned
 
-
+* **Efficiency with INITIALIZE**: I learned to use the `INITIALIZE` verb to clear entire group items and tables at once, which is much cleaner than individual `MOVE` statements.
+* **Handling Division by Zero**: I gained experience in proactive error handling by checking for zero values in `SALES-LAST-YTD` before division  and using `ON SIZE ERROR` to manage numeric overflows.
+* **Dynamic Loading**: I developed a routine to pre-load auxiliary data into an indexed table (`200-LOAD-SALESREP-TABLE`), reducing the overhead of repetitive file I/O during main report processing.
+* **Standardized Coding Syntax**: Transitioned to more robust `EVALUATE TRUE` structures for main logic control and customer line formatting, which significantly improved the readability of the program compared to standard `IF` statements.
+* **Professional Reporting**: I learned how to use `REDEFINES` to create a more user-friendly output, ensuring the report remains professional even when calculations cannot be performed or exceed field limits.
 
 ---
 
 ## 🖼 Screenshots
 
 ### 🖼 Final Report
-
+![rpt-6000](assets/RPT6000output.png)
 ### 🖼 Unknown Name Validation
+![rpt-6000](assets/unknown_validation.png)
 ⬆️ [Back to Top](#-smartwatch-faq)
