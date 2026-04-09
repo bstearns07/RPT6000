@@ -21,7 +21,7 @@
            SELECT CUSTMAST ASSIGN TO CUSTMAST.
            SELECT INPUT-SALESREP ASSIGN TO SALESREP.
            SELECT OUTPUT-RPT6000 ASSIGN TO RPT6000.
-           
+
 
        DATA DIVISION.
 
@@ -49,7 +49,7 @@
            RECORDING MODE IS F
            LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 130 CHARACTERS
-           BLOCK CONTAINS 130 CHARACTERS.    
+           BLOCK CONTAINS 130 CHARACTERS.
 
        01  SALESREP-MASTER-RECORD.
            10 SM-SALESREP-NUMBER PIC 99.
@@ -135,38 +135,38 @@
            05  HL1-DAY         PIC 9(2).
            05  FILLER          PIC X(1)   VALUE "/".
            05  HL1-YEAR        PIC 9(4).
-           05  FILLER          PIC X(26)  VALUE SPACE.
+           05  FILLER          PIC X(24)  VALUE SPACE.
            05  FILLER          PIC X(20)  VALUE "YEAR-TO-DATE SALES R".
            05  FILLER          PIC X(31)  VALUE "EPORT".
            05  FILLER          PIC X(6)   VALUE "PAGE: ".
            05  Hl1-PAGE-NUMBER PIC ZZZ9.
-           05  FILLER          PIC X(26)  VALUE SPACE.
+           05  FILLER          PIC X(28)  VALUE SPACE.
 
        01  HEADING-LINE-2.
            05  FILLER          PIC X(7)   VALUE "TIME:  ".
            05  HL2-HOURS       PIC 9(2).
            05  FILLER          PIC X(1)   VALUE ":".
            05  HL2-MINUTES     PIC 9(2).
-           05  FILLER          PIC X(82)  VALUE SPACE.
+           05  FILLER          PIC X(83)  VALUE SPACE.
            05  FILLER          PIC X(7)  VALUE "RPT6000".
-           05  FILLER          PIC X(29)  VALUE SPACE.
+           05  FILLER          PIC X(28)  VALUE SPACE.
 
        01  HEADING-LINE-3.
            05  FILLER           PIC X(54)  VALUE SPACES.
            05  FILLER           PIC X(19)  VALUE "SALES         SALES".
-           05  FILLER           PIC X(8)   VALUE SPACES.
-           05  FILLER           PIC X(17)  VALUE "CHANGE     CHANGE".
-           05  FILLER           PIC X(32)  VALUE SPACE.
+           05  FILLER           PIC X(9)   VALUE SPACES.
+           05  FILLER           PIC X(18)  VALUE "CHANGE      CHANGE".
+           05  FILLER           PIC X(31)  VALUE SPACE.
 
        01  HEADING-LINE-4.
            05  FILLER         PIC X(17)  VALUE "BRANCH   SALESREP".
            05  FILLER         PIC X(13)  VALUE SPACES.
            05  FILLER         PIC X(8)   VALUE "CUSTOMER".
-           05  FILLER         PIC X(14)  VALUE SPACES. 
+           05  FILLER         PIC X(14)  VALUE SPACES.
            05  FILLER         PIC X(22)  VALUE "THIS YTD      LAST YTD".
-           05  FILLER         PIC X(7)   VALUE SPACES.
-           05  FILLER         PIC X(18)  VALUE "AMOUNT     PERCENT".
-           05  FILLER         PIC X(31)  VALUE SPACE.
+           05  FILLER         PIC X(8)   VALUE SPACES.
+           05  FILLER         PIC X(19)  VALUE "AMOUNT      PERCENT".
+           05  FILLER         PIC X(30)  VALUE SPACE.
 
        01  HEADING-LINE-5.
            05  FILLER           PIC X(6)   VALUE ALL '-'.
@@ -180,12 +180,23 @@
            05  FILLER           PIC X(11)  VALUE ALL '-'.
            05  FILLER           PIC X(4)   VALUE SPACE.
            05  FILLER           PIC X(11)  VALUE ALL '-'.
-           05  FILLER           PIC X(2)   VALUE SPACE.
-           05  FILLER           PIC x(7)   VALUE ALL '-'.
+           05  FILLER           PIC X(3)   VALUE SPACE.
+           05  FILLER           PIC X(8)   VALUE ALL '-'.
            05  FILLER           PIC X(30)  VALUE SPACE.
 
        01 HEADING-LINE-6.
            05  FILLER           PIC X(130) VALUE SPACE.
+
+       01 HEADING-LINE-7.
+           05  FILLER      PIC X(51)            VALUE SPACE.
+           05  FILLER      PIC X(13)            VALUE ALL "=".
+           05  FILLER      PIC X(1)             VALUE SPACE.
+           05  FILLER      PIC X(13)            VALUE ALL "=".
+           05  FILLER      PIC X(1)             VALUE SPACE.
+           05  FILLER      PIC X(13)            VALUE ALL "=".
+           05  FILLER      PIC X(2)             VALUE SPACE.
+           05  FILLER      PIC X(8)             VALUE ALL "=".
+           05  FILLER      PIC X(27)            VALUE SPACE.
 
        01  CUSTOMER-LINE.
            05  FILLER               PIC X(2)       VALUE SPACE.
@@ -250,7 +261,7 @@
            05  GTL-CHANGE-PERCENT   PIC +++9.9.
            05  GTL-CHANGE-PERCENT-R REDEFINES GTL-CHANGE-PERCENT
                                     PIC X(6).
-           05  FILLER               PIC X(31)    VALUE "***".
+           05  FILLER               PIC X(30)    VALUE "***".
 
 
        PROCEDURE DIVISION.
@@ -290,21 +301,21 @@
 
        200-LOAD-SALESREP-TABLE.
 
-           PERFORM 
-              WITH TEST AFTER 
+           PERFORM
+              WITH TEST AFTER
               VARYING SRT-INDEX FROM 1 BY 1
               UNTIL SALESREP-EOF
                 OR SRT-INDEX > 100
                     PERFORM 210-READ-SALESREP-RECORD
                     IF NOT SALESREP-EOF
-                       MOVE SM-SALESREP-NUMBER 
+                       MOVE SM-SALESREP-NUMBER
                           TO SALESREP-NUMBER (SRT-INDEX)
                        MOVE SM-SALESREP-NAME
                           TO SALESREP-NAME (SRT-INDEX)
                     END-IF
            END-PERFORM.
 
-       210-READ-SALESREP-RECORD.  
+       210-READ-SALESREP-RECORD.
            READ INPUT-SALESREP
                 AT END
                      SET SALESREP-EOF TO TRUE
@@ -440,13 +451,13 @@
            WRITE PRINT-AREA.
            MOVE HEADING-LINE-2 TO PRINT-AREA.
            WRITE PRINT-AREA.
+           MOVE HEADING-LINE-6 TO PRINT-AREA.
+           WRITE PRINT-AREA.
            MOVE HEADING-LINE-3 TO PRINT-AREA.
            WRITE PRINT-AREA.
            MOVE HEADING-LINE-4 TO PRINT-AREA.
            WRITE PRINT-AREA.
            MOVE HEADING-LINE-5 TO PRINT-AREA.
-           WRITE PRINT-AREA.
-           MOVE HEADING-LINE-6 TO PRINT-AREA.
            WRITE PRINT-AREA.
            MOVE ZERO TO LINE-COUNT.
            MOVE 2 TO SPACE-CONTROL.
@@ -478,10 +489,13 @@
                         ON SIZE ERROR
                             MOVE "OVRFLW" TO STL-CHANGE-PERCENT-R.
 
-           
+      *     MOVE HEADING-LINE-6 TO PRINT-AREA.
+      *     PERFORM 350-WRITE-REPORT-LINE.
            MOVE SALESREP-TOTAL-LINE TO PRINT-AREA.
            MOVE 1 TO SPACE-CONTROL.
            PERFORM 350-WRITE-REPORT-LINE.
+      *     MOVE HEADING-LINE-6 TO PRINT-AREA.
+      *     PERFORM 350-WRITE-REPORT-LINE.
            MOVE 2 TO SPACE-CONTROL.
            ADD SALESREP-TOTAL-THIS-YTD TO BRANCH-TOTAL-THIS-YTD.
            ADD SALESREP-TOTAL-LAST-YTD TO BRANCH-TOTAL-LAST-YTD.
@@ -536,6 +550,7 @@
                         CHANGE-AMOUNT * 100 / GRAND-TOTAL-LAST-YTD
                         ON SIZE ERROR
                             MOVE 999.9 TO GTL-CHANGE-PERCENT.
+           MOVE HEADING-LINE-7 TO PRINT-AREA
            MOVE 1 TO SPACE-CONTROL
            PERFORM 350-WRITE-REPORT-LINE
            MOVE GRAND-TOTAL-LINE TO PRINT-AREA.
