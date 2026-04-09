@@ -32,39 +32,20 @@
            LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 130 CHARACTERS
            BLOCK CONTAINS 130 CHARACTERS.
-
-      *****************************************************************
-      * The customer master record contains the following fields
-      *****************************************************************
-       01  CUSTOMER-MASTER-RECORD.
-           05  CM-BRANCH-NUMBER        PIC 9(2).
-           05  CM-SALESREP-NUMBER      PIC 9(2).
-           05  CM-CUSTOMER-NUMBER      PIC 9(5).
-           05  CM-CUSTOMER-NAME        PIC X(20).
-           05  CM-SALES-THIS-YTD       PIC S9(5)V9(2).
-           05  CM-SALES-LAST-YTD       PIC S9(5)V9(2).
-           05  FILLER                  PIC X(87).
+       COPY CUSTMAST.
 
        FD INPUT-SALESREP
            RECORDING MODE IS F
            LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 130 CHARACTERS
            BLOCK CONTAINS 130 CHARACTERS.
-
-       01  SALESREP-MASTER-RECORD.
-           10 SM-SALESREP-NUMBER PIC 99.
-           10 SM-SALESREP-NAME   PIC X(10).
-           10 FILLER              PIC X(118).
+       COPY SALESREP.
 
        FD  OUTPUT-RPT6000
            RECORDING MODE IS F
            LABEL RECORDS ARE STANDARD
            RECORD CONTAINS 130 CHARACTERS
            BLOCK CONTAINS 130 CHARACTERS.
-
-      *****************************************************************
-      * Define the print area for the report as a fixed 130 char length
-      *****************************************************************
        01  PRINT-AREA      PIC X(130).
 
        WORKING-STORAGE SECTION.
