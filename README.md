@@ -6,17 +6,22 @@
 ## 👤 Authors
 Ben Stearns - [@bstearns07](https://github.com/bstearns07)<br>
 Tristan Joubert - [@TJouber004](https://github.com/TJoubert004)
+
+📅 Date: 4/9/2026
+
 ---
 
 ## 📑 Table of Contents
-- [📌 Summary](#-summary)
-- [✨ Features](#-features)
-- [🧾Report Breakdown](#-report-breakdown)
-- [⚙️ How It Works](#how-it-works)
-- [🧰 Tech Stack](#-tech-stack)
-- [🧠 Topics Covered](#-topics-covered)
-- [📘 What I Learned](#-what-i-learned)
-- [🖼 Screenshots](#-screenshots)
+- 📌 [Summary](#-summary)
+- ⭐ [How It Works](#-how-it-works)
+- ✨ [Features](#-features)
+- 🧾 [Report Breakdown](#-report-breakdown)
+- 🧰 [Tech Stack](#-tech-stack)
+- 🔧 [Development Tools](#-development-tools)
+- 🧩 [Core Concepts](#-core-concepts)
+- 📝 [New Topics Covered](#-new-topics-covered)
+- 📘 [What I Learned](#-what-i-learned)
+- 🖼 [Screenshots](#-screenshots)
 
 ---
 
@@ -26,6 +31,14 @@ The **Report 6000** application adds even more COBOL bells and whistles to make 
 Not only does the code utilize more COBOL features to make the code more readable and flexible such as INITIALIZE, PACKED-DECIMAL, and REDIFINE statements, but now the report displays the salerep's name. How does it do that you make ask? Why, with a table lookup of course. A new data file has been added to the program, which is then read in by the program to find a rep's name by their id.<br>
 <br>
 For full program details, refer to [Program Requirements](./assets/Assignment_Instruction.pdf) 
+
+---
+
+## ⭐ How It Works
+
+1. Upload the repository's associated .cbl, .jcl, CUSTMAST, SALESREP, and SYSLIB data members to your mainframe environment
+2. Modify the JCL username on line 1 and the DSN names to match the filepaths for where the members are in your environment
+3. Sumbit the JCL job for processing
 
 ---
 
@@ -69,11 +82,25 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 |----------|----------|
 | 🚫 Sales Last YTD = 0 | Change Percent is set to `OVRFLW` |
 ---
-## 🧰 Tech Stack
 
-- Enterprise COBOL 6.4 (Semantic Markup)
-- IBM z/OS mainframe for development and compiling
-- ZOWE Explorer Studio Code extension
+## 🧰 Tech Stack
+![COBOL](https://img.shields.io/badge/COBOL-Enterprise%206.4-blue?style=flat-square)
+![JCL](https://img.shields.io/badge/JCL-Batch%20Processing-grey?style=flat-square)
+![z/OS](https://img.shields.io/badge/IBM-z%2FOS-0f62fe?style=flat-square)
+![VS Code](https://img.shields.io/badge/VS%20Code-Zowe%20Explorer-007ACC?style=flat-square)
+
+- **Enterprise COBOL 6.4** – Core business logic  
+- **JCL** – Batch execution (compile/link/run)  
+- **IBM z/OS** – Mainframe runtime environment  
+
+---
+
+## 🔧 Development Tools
+- 💻 Visual Studio Code + Zowe Explorer  
+- 🖥️ IBM z/OS Mainframe  
+- 📂 Partitioned Datasets (PDS)
+
+---
 
 ### 🧩 Core Concepts
 - Report generation with standard alignments
@@ -81,20 +108,9 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 - Proper setup of Environment and Data divisions for reading in data from other members
 - Utilizing copy members to copy in data from another memeber for easy re-use
 
-### 🛠 Development Tools
-- Marist z/OS Mainframe environment
-- Visual Studio Code with ZOWE Explorer extension
-
----
-## How It Works
-
-1. Upload the repository's associated .cbl, .jcl, CUSTMAST, SALESREP, and SYSLIB data members to your mainframe environment
-2. Modify the JCL username on line 1 and the DSN names to match the filepaths for where the members are in your environment
-3. Sumbit the JCL job for processing
-
 ---
 
-## 🧠 Topics Covered
+## 📝 New Topics Covered
 
 * **Table Processing & Lookups**: Implemented internal tables using the `OCCURS` clause and optimized data retrieval with the `SEARCH` verb and `INDEXED BY` to dynamically find sales representative names.
 * **Data Internalization (COPY Members)**: Utilized `COPY` statements to pull in external record definitions for `CUSTMAST` and `SALESREP`, promoting modularity and code reusability.
@@ -118,6 +134,8 @@ For full program details, refer to [Program Requirements](./assets/Assignment_In
 
 ### 🖼 Final Report
 ![rpt-6000](assets/RPT6000output.png)
+
 ### 🖼 Unknown Name Validation
 ![rpt-6000](assets/unknown_validation.png)
+
 ⬆️ [Back to Top](#-smartwatch-faq)
