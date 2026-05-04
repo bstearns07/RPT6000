@@ -1,5 +1,5 @@
       *****************************************************************
-      * Title..........: RPT6000 - Future Value Calculator
+      * Title..........: RPT6000 - Sales Report
       * Programmer.....: Ben Stearns and Tristan Joubert
       * Date...........: 4-6-26
       * GitHub URL.....: https://github.com/bstearns07/RPT6000
